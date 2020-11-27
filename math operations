@@ -1,0 +1,121 @@
+Problem: 
+This program is getting 2 numbers from user and do the operation as they choose.
+
+Pseudocode:
+1) create variables named: userInput1, userInput2, choice and result
+2) ask the user to input to integer numbers between 0 and 1000
+3) get the 2 numbers and save them in variables named userInput1 and userInput2
+4) see if they entered a valid number in the range
+5) if yes then continue with showing them 5 options of whether they want to do addition, subtraction, multiplication, division or quit
+6) show the result as they pick which case they want
+7) put an error message if they entered an invalid case or number
+
+Code:
+
+import java.util.Scanner;
+
+public class lab3
+{
+ public static void main (String [] args )
+ {
+ double userInput1;
+ double userInput2;
+ int choice;
+ double result;
+ 
+   Scanner keyboard=new Scanner (System.in);
+
+ System.out.println("Choose 2 integer numbers between 0 and 1000 ( \nnote:the second number should be bigger than the first one");
+ 
+ userInput1= keyboard.nextDouble();
+ userInput2= keyboard.nextDouble();
+
+ if (userInput2<userInput1)
+ { 
+ System.out.println("ERROR! ( the second input should be bigger than the first one");
+ }
+ 
+ else if  (userInput1>=0 && userInput1<=1000 && userInput2>=0 && userInput2<=1000 )
+ {
+   System.out.println("You can choose one of the operations:");
+   System.out.println("1)Addition");
+   System.out.println("2)Subtraction");
+   System.out.println("3)Multiplication");
+   System.out.println("4)Division");
+   System.out.println("5)Quite");
+   
+ choice=keyboard.nextInt();
+ 
+  switch (choice)
+  {
+  case 1:
+   result=userInput1+userInput2;
+   System.out.println("the result is : "+ result);
+  break;
+   
+  case 2:
+   result=userInput2-userInput1;
+   System.out.println("the result is : "+ result);
+  break;
+  
+  case 3:
+   result=userInput1*userInput2;
+   System.out.println("the result is : "+ result);
+  break;
+  
+  case 4:
+   result=userInput2/userInput1;
+   System.out.printf("the result is : %.2f",result);
+  break;
+  
+  case 5:
+  System.out.println("You have chosen to quit the program.");
+  
+  default:
+  System.out.println(" Invalid choice!");
+  
+  }
+ }
+  
+  else 
+   System.out.println ("you have chosen a number out of range!");
+   
+ }
+}
+  
+
+   
+                      
+Output:
+ ----jGRASP exec: java lab3
+Choose 2 integer numbers between 0 and 1000 ( 
+note:the second number should be bigger than the first one
+15
+100
+You can choose one of the operations:
+1)Addition
+2)Subtraction
+3)Multiplication
+4)Division
+5)Quite
+4
+the result is : 6.67
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java lab3
+Choose 2 integer numbers between 0 and 1000 ( 
+note:the second number should be bigger than the first one
+20
+10
+ERROR! ( the second input should be bigger than the first one
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java lab3
+Choose 2 integer numbers between 0 and 1000 ( 
+note:the second number should be bigger than the first one
+10
+1000000
+you have chosen a number out of range!
+ ----jGRASP: operation complete.
+
