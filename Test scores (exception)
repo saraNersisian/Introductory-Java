@@ -1,0 +1,107 @@
+Sara Nersisian
+06/4/2018
+
+Problem:
+(This is a challenge problem from book)
+Write a class named TestScores. The class constructor should accept an array of test scores as its argument. The class should have a method that returns the average of the test scores. If any test score in the array is negative or greater than 100, the class should throw an IllegalArgumentException. Demonstrate the class in a program. 
+
+Pseudocode:
+Ask user how many tests they have, then create an array with length of the test scores.
+And ask user to input the test scores, store it in the array.
+Create an instance of the testScores class named student1 and pass the array as a constructor
+Then in class get the total of scores and divide it by length of array which is the number of tests and return it and print the result.
+
+UML:
+TestScores
+- array []: double
++TestScores(array[]: double)
++average(): double
+
+
+
+
+
+
+Code:
+Class:
+import java.io.*;
+
+public class TestScores
+{
+private double [] array;
+
+ public TestScores(double [] array)
+{
+this.array=array;
+}
+
+public double average()
+{
+double total=0;
+
+for(int i=0;i<array.length;i++)
+  total+=array[i];
+
+  return total/array.length;
+}
+
+ 
+}
+Main:
+import java.util.Scanner;
+
+public class Ch11_TestScores
+{
+public static void main (String [] args)
+ { 
+  Scanner keyboard=new Scanner (System.in);
+
+System.out.println("How many tests do you have?");
+int testNum=keyboard.nextInt();
+
+double [] array=new double[testNum];
+
+System.out.println("Enter your test scores bellow: ");
+
+for(int i=0;i<testNum;i++){
+ array[i]=keyboard.nextDouble();
+  if (array[i]>100 || array[i]<0)
+  { throw new IllegalArgumentException();}
+  
+}
+ 
+ TestScores student1= new TestScores (array);
+ student1.average();
+ System.out.println("Student's Average is "+ student1.average());
+ 
+ }
+}
+
+output:
+case 1: negative or more than 100 score
+ ----jGRASP exec: java Ch11_TestScores
+How many tests do you have?
+3
+Enter your test scores bellow: 
+100
+110
+Exception in thread "main" java.lang.IllegalArgumentException
+   at Ch11_TestScores.main(Ch11_TestScores.java:19)
+
+ ----jGRASP wedge2: exit code for process is 1.
+ ----jGRASP: operation complete.
+
+
+Case 2: Correct input and output
+ ----jGRASP exec: java Ch11_TestScores
+How many tests do you have?
+3
+Enter your test scores bellow: 
+100
+95
+90
+Student's Average is 95.0
+
+ ----jGRASP: operation complete.
+
+
