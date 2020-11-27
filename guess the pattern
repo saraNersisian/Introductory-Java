@@ -1,0 +1,197 @@
+Problem:
+This program is a simple math problem.The user should be able to see the pattern and guess the value of x . They have just 3 chances. 
+
+if   2+4=12 
+     8+2=80 
+     3+6=27 
+
+Then 7+8= x 
+
+
+
+Pseudocode:
+1)	Create variables name userAnswer, triedTimes, hint, enter
+2)	Display a message telling “If you are a math genius solve for x “
+3)	show the problem: if   2+4=12   8+2=80    3+6=27    Then 7+8= x 
+4)	Save the input in userAnswer
+5)	Check if triedTimes is less than 3 and userAnswer is still not equal to 105
+6)	Then display “wrong answer! Try again, also ask the user if they want to see a hint
+7)	If they say yes then show them that 2+4=6 , 12/6=2
+8)	If they say no, then show them the problem again
+9)	Every time they try adding one to triedTimes
+10)	Then display that you have tried ( ) times out of 3
+11)	When they are about to guess the last time, show them that it is your last chance, but first check if the triedTimes is equal to 2
+12)	 If they failed 3 times, show them that “sorry you have used all your chances and the correct answer was 105 then display the solution
+13)	With while loop check to see if the triedTimes is less than 3 and userAnswer is not equal to 105 which is the answer of x  
+14)	If they answered the question at first shot or somewhere between the display that congratulations you have guessed the answer at ( )  shot
+  
+
+
+
+
+
+
+
+
+
+Code: 
+import java.util.Scanner;
+
+public class Lab5
+{
+ public static void main (String [] args)
+ {
+  int userAnswer=0;
+  int triedTimes=0;
+  char hint;
+  String enter;
+ 
+ 
+ Scanner keyboard=new Scanner (System.in);
+ System.out.println("If you are a math genius, solve for x ");
+ System.out.println("You have 3 chances to guess the answer!");
+  
+  do
+  {
+  System.out.println(" \nif   2+4=12 \n     8+2=80 \n     3+6=27 \n\nThen 7+8= x "); 
+ System.out.println("\n----> What is the value of x : ");
+ 
+ userAnswer=keyboard.nextInt(); 
+ 
+ if ( triedTimes<3 && userAnswer!=105)   
+  {
+ System.out.println("Wrong answer!!! Try again");
+ 
+ System.out.println("\n Want to see a HINT????");
+ System.out.println("(Enter Y for YES or N for NO)");
+
+   hint=keyboard.next(".").charAt(0);
+   
+      if(hint=='y' || hint =='Y')
+      {
+        System.out.println("___________________ HINT ___________________\n\n "
+                          +"based on the first example: 2+4=6 -----> 12/6=2\n");
+         System.out.println("_____________________________________________");
+        System.out.println("\n\t\t\t\t Press 'y' to continue");
+        enter=keyboard.next(".");    
+      }
+  else if (hint=='n' || hint=='N')
+      { 
+  System.out.println();
+      }
+    
+  triedTimes++;
+  System.out.printf("******************* (You have tried %d time(s) out of 3) ************************\n",triedTimes);
+  if (triedTimes==2)
+  System.out.println("\n************************** LAST CHANCE!! *****************************");
+  if(triedTimes==3)
+      {
+       System.out.println("\n:(( :(( :(( :(( :(( (SORRY You Have Used All Your chances! )): )): )): )): )): )): )):"
+                           +" \n\n\t\t\t\t\t\t\t\t\tThe correct answer was 105");
+       System.out.println("\nSolution --->>  7+8=15 ---> 15 (the sum result) * 7 (the First number) = 105");                   
+       System.exit(0);
+      }
+  } //if closed
+ } // while closed
+ while ( triedTimes<3 && userAnswer!=105 );
+  triedTimes++;
+  
+      if (userAnswer==105)
+    {
+      System.out.println("\n^^^^^^^^^^^^^ CONGRATULATIONS!!!!! YOU ARE A GENIUS!! ^^^^^^^^^^^^^^^^^");
+      System.out.printf("\n   :)) :)) :))   You found the answer at %d Shot  ((: ((: ((: \n", triedTimes);
+    }
+
+ }
+}
+
+
+output:
+ ----jGRASP exec: java Lab4
+If you are a math genius, solve for x 
+You have 3 chances to guess the answer!
+ 
+if   2+4=12 
+     8+2=80 
+     3+6=27 
+
+Then 7+8= x 
+
+----> What is the value of x : 
+105      // Correct answer at 1st shot
+
+^^^^^^^^^^^^^ CONGRATULATIONS!!!!! YOU ARE A GENIUS!! ^^^^^^^^^^^^^^^^^
+
+   :)) :)) :))   You found the answer at 1 Shot  ((: ((: ((: 
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java Lab4
+If you are a math genius, solve for x 
+You have 3 chances to guess the answer!
+ 
+if   2+4=12 
+     8+2=80 
+     3+6=27 
+
+Then 7+8= x 
+
+----> What is the value of x : 
+22
+Wrong answer!!! Try again
+
+ Want to see a HINT????
+(Enter Y for YES or N for NO)
+y
+___________________ HINT ___________________
+
+ based on the first example: 2+4=6 -----> 12/6=2
+
+_____________________________________________
+
+             Press 'y' to continue
+y
+************** (You have tried 1 time(s) out of 3) ****************
+ 
+if   2+4=12 
+     8+2=80 
+     3+6=27 
+
+Then 7+8= x 
+
+----> What is the value of x : 
+32
+Wrong answer!!! Try again
+
+ Want to see a HINT????
+(Enter Y for YES or N for NO)
+n
+
+************** (You have tried 2 time(s) out of 3) ****************
+
+************************** LAST CHANCE!! *****************************
+ 
+if   2+4=12 
+     8+2=80 
+     3+6=27 
+
+Then 7+8= x 
+
+----> What is the value of x : 
+40
+Wrong answer!!! Try again
+
+ Want to see a HINT????
+(Enter Y for YES or N for NO)
+n
+
+************** (You have tried 3 time(s) out of 3) ****************
+
+:(( :(( :(( (SORRY You Have Used All Your chances! )): )): )): )): )): 
+
+                           The correct answer was 105
+
+Solution --->>  7+8=15 ---> 15 (the sum result) * 7 (the First number) = 105
+
+ ----jGRASP: operation complete.
+
