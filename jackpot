@@ -1,0 +1,208 @@
+Problem:
+ This program is like a jackpot. 
+ It asks user to pick a number between 0-20 and then it rolls a dice, if the picked number was the random number that dice shows then they win. If not, they lose, and the program gives them another last chance.
+If they win, it will roll the dice again and the number would be their prize, for an even number, the program doubles the price, for an odd number it gives the same amount as the odd number itself.
+
+
+Pseudocode:
+1)	Create variables guess1 and rand
+2)	Ask user to input a number between 0-20 
+3)	With do while loop make them to pick a number In range
+4)	Save the number in variable name guess1
+5)	The display the games rolls and information “I will roll a dice and if you get lucky and it turned to guess1. You are a WINNER! For your prize I will roll the dice again! If the number was an EVEN number, I will multiply it by 2. If it was an ODD number, then i would give you the odd number’s amount itself! If you lost first time, DON'T WORRY! I will give you one more chance!”
+6)	Then roll the dice and display the winning number
+7)	If it was the number that user picked, then go to the method name winner
+8)	Winner method shows that they win and will show them their prize by rolling the dice again and doubling it if it was an even number or leave it as is if it was an odd number
+9)	If the winning number wasn’t equal to the user guess, then go to the method name secondChance
+10)	In secondChance method, give them another chance picking a number in range and roll the dice
+11)	If they failed, then say sorry you have lost
+12)	If they win then go to winner method
+
+
+
+
+
+                      
+
+
+
+
+
+
+
+Code:
+import java.util.Scanner;
+import java.util.Random;
+
+public class lab7
+{
+ public static void main (String [] args)
+ {
+ int guess1;
+ int rand;
+ 
+ Scanner keyboard = new Scanner(System.in);
+ Random randNums = new Random();
+ 
+ do
+ {
+ System.out.println("Pick a number between 0-20");
+ guess1=keyboard.nextInt();
+ if (guess1>20)
+ System.out.println("OUT OF RANGE! Please Pick a number in range of 0-20 ");
+ } while( guess1>20);
+ 
+ System.out.println("I will roll a dice and if you get lucky and it turned to "
+                      + guess1 + " You are a WINNER!"
+                      +"\nfor your prize I will roll the dice again!"
+                      +"\nIf the number was an EVEN number, I will multiply it by 2"
+                      +"\nIf it was an ODD number, then i would give you the odd number’s amount itself!"
+                      +"\nIf you lost first time, DON'T WORRY! I will give you one more chance!");
+ System.out.println();
+ System.out.println("ROLLING THE DICE...");
+ System.out.println();
+ 
+ rand = randNums.nextInt(20) + 1;
+ System.out.println("*********** The winner number is "+ rand+" ***********");
+ 
+ if(rand==guess1)
+ winner(guess1);
+  
+ else if (rand!=guess1)
+ secondChance();
+     
+ }//main closed
+ 
+ 
+ public static void winner (int guess)
+ {
+   int prize;
+   System.out.println("Yaaaayyyyy!!!\nYOU ARE LUCKY!!!");
+
+  if(guess%2==0)
+   {
+     prize=guess*2;
+     System.out.println("Your prize is $"+prize);
+    }
+  else  
+    {
+     prize=guess;
+     System.out.println("Your prize is $"+prize);
+    }
+ }//winner closed
+ 
+ public static void secondChance()
+ {
+   int guess2;
+   int rand;
+   Scanner keyboard = new Scanner(System.in);
+   Random randNums = new Random();
+
+   System.out.println("\nYou have one more chance");
+   System.out.println("Pick a number again between 0-20");
+   guess2=keyboard.nextInt();
+   System.out.println();
+   System.out.println("ROLLING THE DICE AGAIN...");
+   System.out.println();
+   
+   rand = randNums.nextInt(20) + 1;
+   System.out.println("*********** The winner number is "+ rand+" ***********");
+
+   if(rand==guess2)
+   winner(guess2);
+   else 
+   System.out.println(":( :( :( :( :( SORRY ): ): ): ): ): ):  \nYou have lost! ");
+ }//secondChance closed
+ 
+}//class closed
+
+
+
+Output:
+
+
+
+
+
+ ----jGRASP exec: java lab7
+Pick a number between 0-20
+33
+OUT OF RANGE! Please Pick a number in range of 0-20 
+Pick a number between 0-20
+4
+I will roll a dice and if you get lucky and it turned to 4 You are a WINNER!
+for your prize I will roll the dice again!
+If the number was an EVEN number, I will multiply it by 2
+If it was an ODD number, then i would give you the odd number’s amount itself!
+If you lost first time, DON'T WORRY! I will give you one more chance!
+
+ROLLING THE DICE...
+
+*********** The winner number is 6 ***********
+
+You have one more chance
+Pick a number again between 0-20
+5
+
+ROLLING THE DICE AGAIN...
+
+*********** The winner number is 10 ***********
+:( :( :( :( :( SORRY ): ): ): ): ): ):  
+You have lost! 
+
+ ----jGRASP: operation complete.
+
+
+
+
+ ----jGRASP exec: java lab7
+Pick a number between 0-20
+4
+I will roll a dice and if you get lucky and it turned to 4 You are a WINNER!
+for your prize I will roll the dice again!
+If the number was an EVEN number, I will multiply it by 2
+If it was an ODD number, then i would give you the odd number’s amount itself!
+If you lost first time, DON'T WORRY! I will give you one more chance!
+
+ROLLING THE DICE...
+
+*********** The winner number is 9 ***********
+
+You have one more chance
+Pick a number between 0-20
+44
+OUT OF RANGE! Please Pick a number in range of 0-20 
+Pick a number between 0-20
+3
+
+ROLLING THE DICE AGAIN...
+
+*********** The winner number is 15 ***********
+:( :( :( :( :( SORRY ): ): ): ): ): ):  
+You have lost! 
+
+ ----jGRASP: operation complete.
+
+
+
+
+
+
+ ----jGRASP exec: java lab7
+Pick a number between 0-20
+3
+I will roll a dice and if you get lucky and it turned to 3 You are a WINNER!
+for your prize I will roll the dice again!
+If the number was an EVEN number, I will multiply it by 2
+If it was an ODD number, then i would give you the odd's number amount itself!
+If you lost first time, DON'T WORRY! I will give you one more chance!
+
+ROLLING THE DICE...
+
+*********** The winner number is 3 ***********
+Yaaaayyyyy!!!
+YOU ARE LUCKY!!!
+Your prize is $3
+
+ ----jGRASP: operation complete.
+
