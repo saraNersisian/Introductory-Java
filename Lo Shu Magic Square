@@ -1,0 +1,442 @@
+Sara Nersisian
+05/15/2018
+
+Problem: 
+This problem is an exercise from book.
+It is called “Lo Shu Magic Square”.
+How it works? 
+It is asking user to input a 3*3 matrix 
+The rules are:   1) The numbers should be between 1 and 9
+                          2) There should not be any duplicates of a number
+                          3) Each row, each column, each diagonal they should all add up to the same number (15)                                                         
+this problem has ONLY one solution though
+
+
+
+
+
+
+
+Pseudocode:
+First display rules for user
+Then get the numbers row by row
+Because valid numbers are the ones between 1 and 9 and not duplicates, check every input to see if it is valid, if one of the conditions did not exist then show that it is an invalid input and enter another valid number to continue
+For checking the duplicates, go to a Boolean method where it checks each row, each column and then the whole grid 
+After getting numbers, show them in the shape of a 3*3 matrix 
+Ask user to press y to start checking the values
+First check the row see if they all add up to 15
+Then check column, and then check diagonals 
+In this last 3 steps if any time the sum was not equal to 15, go to a method called goodbye and show the answer and exit the program
+If all conditions were checked and valid then at the last method which is checking second diagonal, display a smiley face and say done 
+
+
+Code:
+
+import java.util.Scanner;
+
+public class ch7Ex19_LoShuMAgicSquare
+{
+ public static void main (String [] args)
+ {
+ int [][] array= new int [3][3];
+ 
+ Scanner keyboard=new Scanner (System.in);
+ 
+ System.out.print("\n******************************************************************************** ");
+ System.out.print("\n                               LO SHU MAGIC SQUARE                               ");
+ System.out.print("\n******************************************************************************** ");
+
+ System.out.println("\n");
+ System.out.println("Enter a 3*3 matrix with following conditions: ");
+ System.out.println("\n1)Numbers should be integers between 1 and 9");
+ System.out.println("2)NO duplicates");
+ System.out.println("3)The sum of each row, each column, and each diagonal should all add up to the same number (15)");
+ System.out.println();
+ System.out.println("FYI: \n\tFirst 3 numbers go -----> |X X X|"
+                     +"   \n\tSecond 3 numbers go ----> |X X X|"
+                     +"   \n\tThird 3 numbers go -----> |X X X|");
+                     
+ System.out.println("\nWaiting for your input...");
+
+ for(int i=0; i<array.length; i++)   
+  for(int j=0; j<array[i].length; j++)
+     {
+        array[i][j]=keyboard.nextInt();
+            while ( array[i][j] < 1 || array[i][j] > 9 || !checkGridDuplication(i, j, array))
+            {
+               System.out.println(" Please enter a valid number!!");
+               System.out.println("(Either the number was not in range OR was a duplicate");
+               array[i][j]=keyboard.nextInt();
+            }// while closed
+     }// second for
+
+ System.out.print("You have entered : ");
+ for( int i=0; i<3; i++)
+ {
+   System.out.println();
+    for( int j=0; j<3; j++)
+     System.out.print(array[i][j]+" ");
+  }
+  
+ System.out.println("\nReady to check your work? Press Y/y");
+ char yes=keyboard.next(".").charAt(0);
+ 
+ checkRow(array);
+ checkColumn(array);
+ checkFirstDiagonal(array);
+ checkSecondDiagonal(array);
+
+ }//main closed
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static boolean checkGridDuplication(int i, int j, int [][] grid)
+{
+
+ // cheking the duplication in each row
+ for (int col=0; col<grid[i].length; col++)
+  {
+    if( col!=j && grid[i][col]== grid[i][j])
+     {
+      System.out.println("Duplicate found in row #"+col);
+      return false;
+     }
+  }
+  
+  // checking duplication in each column
+  for (int row=0; row<grid.length; row++)
+   {
+    if( row!=i && grid[row][j]== grid[i][j])
+       {
+        System.out.println("Duplicate found in column #"+row);
+        return false;
+       }
+   }
+   
+ // checking duplication in the whole grid
+ for (int row=0; row<grid.length; row++)
+  for (int col=0; col<grid[i].length; col++)
+    if(row!=i && col!=j && grid[row][col]==grid[i][j])
+      {
+        System.out.println("Duplicate found in row #"+row+ " col #"+col);
+          return false;
+      }
+
+   return true;
+ }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void checkRow( int [][] arrayRow)
+{
+ System.out.println("\n--------------------------- Checking Rows -------------------------------\n");
+
+ for(int row=0; row<arrayRow.length; row++)
+ {
+  int totalRow=0;
+   for( int col=0; col<arrayRow[row].length; col++)
+    totalRow+=arrayRow[row][col];
+  
+   System.out.println("Sum of row #"+row+" is: "+totalRow);
+   
+  if (totalRow!=15)
+    goodBye();
+   
+   else 
+   System.out.println("Valid!! :) :) :) :) :) :) :) :) :) :) :) :)");
+   System.out.println();
+
+ }//for cloased
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void checkColumn( int [][] arrayCol)
+{
+ System.out.println("--------------------------- Checking Columns ----------------------------\n");
+
+ for(int col=0; col<arrayCol.length; col++)
+ {
+  int totalCol=0;
+   for( int row=0; row<arrayCol[col].length; row++)
+    totalCol+=arrayCol[row][col];
+
+   System.out.println("Sum of Col #"+col+" is: "+totalCol);
+
+  if (totalCol!=15)
+   goodBye();
+   
+   else 
+   System.out.println("Valid!! :) :) :) :) :) :) :) :) :) :) :) :)");
+    System.out.println();
+ }//for closed
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void checkFirstDiagonal( int [][] arrayDiagonal)
+{
+ System.out.println("------------------------ Checking First Diagonal ------------------------\n");
+
+  int totalDiagonal1=0;
+  for(int row=0; row<arrayDiagonal.length; row++)
+   {
+    totalDiagonal1+=arrayDiagonal[row][row];
+   }         
+  
+   System.out.println("Sum of first diagonal is: "+totalDiagonal1);
+   
+  if (totalDiagonal1!=15)
+     goodBye();
+   
+   else 
+    {
+    System.out.println("Valid!! :) :) :) :) :) :) :) :) :) :) :) :)");
+    System.out.println();
+    } 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void checkSecondDiagonal( int [][] arrayDiagonal)
+{
+ System.out.println("\n------------------------ Checking Second Diagonal -----------------------\n");
+
+  int totalDiagonal2=0;
+ for(int row=0; row<arrayDiagonal.length; row++)
+ {
+  for (int col=2; col>=0; col--)
+   {
+     int rowAndCol=row+col;
+     if(rowAndCol==2)  // pattern was like [0][2]  [1][1]  [2][0] ,SO they all add up to 2
+       totalDiagonal2+=arrayDiagonal[row][col];  
+    }           
+ }//for main closed  
+ 
+ System.out.println("Sum of second diagonal is: "+totalDiagonal2);
+
+  if (totalDiagonal2!=15)
+       goodBye();
+     
+   else 
+    {
+    System.out.println("Valid!! :) :) :) :) :) :) :) :) :) :) :) :)");
+    System.out.println("\n\n**********************************  D O N E  ********************************** ");
+    System.out.println();
+    System.out.println("YAY!! You found the ONLY solution\n");
+
+     
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t +\"\"\"\"\"+ ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[| o o |]");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t |  ^  | ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t | '-' | ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t +-----+ "); 
+   }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public static void goodBye ()
+{
+ System.out.println("\nInvalid!!\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX :( :( :( :(   GOODBYE   ): ): ): ): XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ");
+
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t #\"\"\"\"\"# ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t | o o | ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t |  \\  | ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t | --- | ");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t #-----#  "); 
+        
+        System.out.println("The ONLY answer to this magic square was: ");
+        System.out.println("\n 4 9 2"
+                          +"\n 3 5 7"
+                          +"\n 8 1 6");
+  System.exit(0);
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}//finish
+
+Output: 
+
+
+
+ ----jGRASP exec: java ch7Ex19_LoShuMAgicSquare
+
+******************************************************************************** 
+                               LO SHU MAGIC SQUARE                               
+******************************************************************************** 
+
+Enter a 3*3 matrix with following conditions: 
+
+1)Numbers should be integers between 1 and 9
+2)NO duplicates
+3)The sum of each row, each column, and each diagonal should all add up to the same number (15)
+
+FYI: 
+   First 3 numbers go -----> |X X X|   
+   Second 3 numbers go ----> |X X X|   
+   Third 3 numbers go -----> |X X X|
+
+Waiting for your input...
+4
+9
+2
+3
+5
+7
+8
+1
+6
+You have entered : 
+4 9 2 
+3 5 7 
+8 1 6 
+Ready to check your work? Press Y/y
+y
+
+--------------------------- Checking Rows -------------------------------
+
+Sum of row #0 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of row #1 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of row #2 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+--------------------------- Checking Columns ----------------------------
+
+Sum of Col #0 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of Col #1 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of Col #2 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+------------------------ Checking First Diagonal ------------------------
+
+Sum of first diagonal is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+
+------------------------ Checking Second Diagonal -----------------------
+
+Sum of second diagonal is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+
+**********************************  D O N E  ********************************** 
+
+YAY!! You found the ONLY solution
+
+                                     +"""""+ 
+                                    [| o o |]
+                                     |  ^  | 
+                                     | '-' | 
+                                     +-----+ 
+
+ ----jGRASP: operation complete.
+
+
+
+ ----jGRASP exec: java ch7Ex19_LoShuMAgicSquare
+
+******************************************************************************** 
+                               LO SHU MAGIC SQUARE                               
+******************************************************************************** 
+
+Enter a 3*3 matrix with following conditions: 
+
+1)Numbers should be integers between 1 and 9
+2)NO duplicates
+3)The sum of each row, each column, and each diagonal should all add up to the same number (15)
+
+FYI: 
+   First 3 numbers go -----> |X X X|   
+   Second 3 numbers go ----> |X X X|   
+   Third 3 numbers go -----> |X X X|
+
+Waiting for your input...
+4
+4
+Duplicate found in row #0
+ Please enter a valid number!!
+(Either the number was not in range OR was a duplicate
+10
+ Please enter a valid number!!
+(Either the number was not in range OR was a duplicate
+
+
+
+
+
+
+
+
+
+ ----jGRASP exec: java ch7Ex19_LoShuMAgicSquare
+
+******************************************************************************** 
+                               LO SHU MAGIC SQUARE                               
+******************************************************************************** 
+
+Enter a 3*3 matrix with following conditions: 
+
+1)Numbers should be integers between 1 and 9
+2)NO duplicates
+3)The sum of each row, each column, and each diagonal should all add up to the same number (15)
+
+FYI: 
+   First 3 numbers go -----> |X X X|   
+   Second 3 numbers go ----> |X X X|   
+   Third 3 numbers go -----> |X X X|
+
+Waiting for your input...
+4
+9
+2
+3
+7
+5
+8
+6
+1
+You have entered : 
+4 9 2 
+3 7 5 
+8 6 1 
+Ready to check your work? Press Y/y
+y
+
+--------------------------- Checking Rows -------------------------------
+
+Sum of row #0 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of row #1 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of row #2 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+--------------------------- Checking Columns ----------------------------
+
+Sum of Col #0 is: 15
+Valid!! :) :) :) :) :) :) :) :) :) :) :) :)
+
+Sum of Col #1 is: 22
+
+Invalid!!
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX :( :( :( :(   GOODBYE   ): ): ): ): XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+
+                                   #"""""# 
+                                   | o o | 
+                                   |  \  | 
+                                   | --- | 
+                                   #-----#  
+The ONLY answer to this magic square was: 
+
+ 4 9 2
+ 3 5 7
+ 8 1 6
+
+ ----jGRASP: operation complete.
+
