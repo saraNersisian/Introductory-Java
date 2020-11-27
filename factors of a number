@@ -1,0 +1,65 @@
+Problem:
+This program is printing factors of any integer number that user inputs.
+Pseudocode:
+1)	Create variables number and i and assign 1 for their values
+2)	Display a message asking user to input a number to see its factors
+3)	Check while i is less than or equal to the number do following
+4)	See if the modules of number over i is 0 (meaning it’s a factor)
+5)	Print i
+6)	Then out of it statement increase i by 1 and continue
+7)	done
+
+
+Code:
+import java.util.Scanner;
+
+public class factor
+{
+ public static void main (String [] args)
+ {
+ int number=1;
+ int i=1;
+ 
+  Scanner keyboard=new Scanner (System.in);
+ 
+ System.out.println("Enter a number to see its factors");
+ 
+ number=keyboard.nextInt();
+ System.out.println("The Factors of "+number+" are: ");
+
+ while(i<=number)
+ {
+  if (number%i==0)
+  { 
+  System.out.printf(" \n%d ",i);
+  }
+  i++;
+  }
+ }
+}
+Output:
+
+ ----jGRASP exec: java factor
+Enter a number to see its factors
+24
+The Factors of 24 are: 
+ 
+1  
+2  
+3  
+4  
+6  
+8  
+12  
+24 
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java factor
+Enter a number to see its factors
+11
+The Factors of 11 are: 
+ 
+1  
+11 
+ ----jGRASP: operation complete.
+
