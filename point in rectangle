@@ -1,0 +1,40 @@
+/* Pseudocode:
+1)import java.util.Scanner
+2)create variables: X and Y
+3)create new scanner to get the input from user
+4)ask the user to enter x and y coordinates in order to see if the point is in the rectangle
+5)save the first input in variable named x 
+6)save the next input in variable named y
+7)with if else condition, see if the x that user entered is between -2.6 and 2.5
+8)and if in the same time y is between -5 and 5
+9)if yes, then show that the point is in the rectangle
+10)if not then show that it is not in the rectangle
+11)done.
+*/
+
+import java.util.Scanner;
+
+public class point_in_rectangle
+ 
+ {
+  public static void main (String [] args)
+  {
+   
+   double x;
+   double y;
+
+   Scanner keyboard=new Scanner (System.in);
+   
+   System.out.println ("Enter the x and y coordinates \nto see if the point is on the specific recatangle"
+                        + "\n(Example: 2 3 )");
+   x=keyboard.nextDouble();
+   y=keyboard.nextDouble();
+
+ if ( x>=-2.5 && x<= 2.5 && y>=-5 && y<=5)
+ System.out.println("The point"+"("+ x +"," +y+")" +" is in the rectangle");
+ 
+ else 
+ System.out.println ("The point"+ "("+ x +"," +y+")" + " is not in the rectangle");
+ 
+ } 
+}
